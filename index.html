@@ -1,2 +1,176 @@
-humbleddb.github.com
+<!DOCTYPE html>
 
+<!--
+	Thanks for the Google HTML5 slide template to
+		Luke Mahé (code)
+		Marcin Wichary (code and design)
+		Dominic Mazzoni (browser compatibility)
+		Charles Chen (ChromeVox support)
+	URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+<head>
+	<title>humbleddb.github.com</title>
+	<meta charset='utf-8'>
+
+	<!-- for the slides -->
+	<script src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+</head>
+<body style='display: none'>
+
+<section class='slides'>
+
+<article>
+	<h1>
+		humbledDB
+	</h1>
+	<p>
+		Version 0.1, 07/2012
+	</p>
+</article>
+
+<article>
+	<h3>
+		Why just another database?
+	</h3>
+	<p>
+		Because all databases are simple to install<br/>
+		but it makes no fun to maintain them, right?<br/>
+		-> You checked their security?<br/>
+		-> You create automatically updates?<br/>
+		-> You create automatically backups?<br/>
+	</p>
+	<div class="build">
+		<div><br/><br/><h3>Why this name?</h3></div>
+		<p>Simple: MongoDB comes from "humongous",</p>
+		<span>yes, this database feels more..</span>
+		<span>humbled.. :-)</span>
+	</div>
+</article>
+
+<article>
+	<h3>
+		Simple code (but not the final api yet):
+	</h3>
+	<p>
+		<br/>Save some data:
+	</p>
+	<p>
+		<pre>var db = new DB();<br/>db.save({name: 'yeah', text: 'this is simple!'});</pre>
+	</p>
+	<div class="build"><div>
+		<p>
+			And load it:
+		</p>
+		<p>
+			<pre>db.find({name: 'yeah'});</pre>
+		</p>
+	</div></div>
+</article>
+
+<article>
+	<h3>
+		Should support callbacks later. Like this:
+	</h3>
+	<p>
+<pre>
+// This works async
+db.find({name: 'yeah'},
+    function(name, data) {
+        console.info('found data: ' + data);
+    }, function(error) {
+        console.error(error);
+    }
+);
+</pre>
+	</p>
+</article>
+
+<article>
+	<h3>
+		How fat is it?
+	</h3>
+	<p><br/>
+		<code>find lib | xargs wc -l</code>
+	</p>
+	<p>
+		Currently ~500 lines!<br/>
+		Incl. nearly 200 lines for an interactive console!
+	</p>
+	<p>
+		<code>find tests | xargs wc -l</code>
+	</p>
+	<p>
+		Currently ~500 lines, too!<br/><br/><br/>
+		If this project has anytime more than 10.000 lines, its failed!
+	</p>
+	<p>
+		Target for version 1.0, less than 2.000 simple, readable and full documentated lines of code.
+	</p>
+</article>
+
+<article>
+	<h3>
+		Supported backends (called storages)
+	</h3>
+	<p>
+		<ul>
+			<li>HTML5 localStorage (browser)</li>
+			<li>Filesystem (node.js)</li>
+			<li>In Memory (browser and node.js)</li>
+			<li>maybe we could split client and server of database later with socket.io</li>
+		</ul>
+	</p>
+</article>
+
+<article>
+	<h3>
+		Roadmap
+	</h3>
+	<p>
+		<ol>
+			<li>Filename mapping!!
+<pre>
+db.save({
+    issueNumber: 4711, type: 'BUG',
+    title: 'Found a bug', /*....*/});
+</pre>
+				-> Will create file bug-4711.json!<br/>
+				-> Save this into the db configuration.
+			</li>
+			<li>Auto increment support (auto. set an id)</li>
+			<li>Pre-Save- and Post-Load Hooks</li>
+			<li>Separate and reintegrate object childrens</li>
+			<li>Simple simple Indexes!</li>
+		</ol>
+	</p>
+</article>
+
+<article>
+	<h3>
+		Demo
+	</h3>
+	<iframe src="demo.html"></iframe>
+</article>
+
+<article>
+	<h3>
+		Thank you!
+	</h3>
+
+	<ul>
+		<li>
+			<a href='demo.html'>demo.html</a>
+		</li>
+		<li>
+			Sourcecode:<br/>
+			<a href='https://github.com/humbleddb/humbleddb'>https://github.com/humbleddb/humbleddb</a>
+		</li>
+	</ul>
+</article>
+
+</section>
+
+</body>
+</html>

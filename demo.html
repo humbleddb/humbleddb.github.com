@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>humbleddb demo</title>
+	<meta charset='utf-8'>
+
+	<!-- for search js -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="https://raw.github.com/deitch/searchjs/master/json2.js"></script>
+	<script type="text/javascript" src="https://raw.github.com/deitch/searchjs/master/lib/searchjs.js"></script>
+
+	<!-- for humbled db -->
+	<script type="text/javascript" src="https://raw.github.com/humbleddb/humbleddb/master/lib/DB.js"></script>
+	<script type="text/javascript" src="https://raw.github.com/humbleddb/humbleddb/master/lib/Html5LocalStorageStorage.js"></script>
+
+	<script type="text/javascript">
+		function runCode() {
+			try {
+				var code = $('#code').val();
+				$('#result').val(eval(code));
+			} catch (e) {
+				$('#result').val(e);
+				if (typeof console.error == 'function')
+					console.error(e);
+			}
+		}
+	</script>
+
+	<style>
+		textarea {
+			font-family: 'Droid Sans Mono', 'Courier New', monospace;
+
+			font-size: 20px;
+			line-height: 28px;
+			padding: 5px 10px;
+
+			letter-spacing: -1px;
+
+			color: black;
+			background: rgb(240, 240, 240);
+			border: 1px solid rgb(224, 224, 224);
+			box-shadow: inset 0 2px 6px rgba(0, 0, 0, .1);
+
+			overflow: hidden;
+		}
+		input {
+			font-family: 'Open Sans', Arial, sans-serif;
+			font-size: 20px;
+			line-height: 26px;
+
+			color: black;
+			background: rgb(240, 240, 240);
+			border: 1px solid rgb(224, 224, 224);
+			box-shadow: inset 0 2px 6px rgba(0, 0, 0, .1);
+
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+
+<textarea id="code" class="demo" style="width: 95%; height: 300px;">
+var storage = new Html5LocalStorageStorage();
+var db = new DB();
+
+db.save({'item1': 'yeah value 1'});
+db.save({'item2': 'yeah value 2'});
+
+db.find();
+db.count();
+</textarea>
+<div style="text-align: center;"><input type="button" value="Run" onclick="runCode();" /></div>
+<textarea id="result" class="demo" style="width: 95%; height: 100px;" disabled="disabled"></textarea>
+
+</body>
+</html>
